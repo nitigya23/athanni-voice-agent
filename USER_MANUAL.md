@@ -1,5 +1,19 @@
 # Athanni Softech's Voice Calling Agent
-## Official User Guide & Comprehensive Feature Manual
+## Official User Guide, Implementation Manual & Testing Reference
+
+---
+
+## 🔑 Live Testing Credentials & Portal Links
+
+| Resource | Value / Link |
+| :--- | :--- |
+| **Production Web App** | [https://athanni-voice-agent.vercel.app](https://athanni-voice-agent.vercel.app) |
+| **Vapi Public API Key** | `90fb2000-8816-4057-9c1a-2c94bd7dfa67` |
+| **Vapi Assistant ID** | `4979a054-806c-45d1-bf84-e83f8a58d61e` |
+| **Vapi API Keys Dashboard** | [https://dashboard.vapi.ai/api-keys](https://dashboard.vapi.ai/api-keys) |
+| **Vapi Assistant Settings** | [https://dashboard.vapi.ai/assistants](https://dashboard.vapi.ai/assistants) |
+| **GitHub Source Code Repository** | [https://github.com/nitigya23/athanni-voice-agent](https://github.com/nitigya23/athanni-voice-agent) |
+| **Official PDF Download** | [Download PDF Manual](https://github.com/nitigya23/athanni-voice-agent/raw/main/Athanni_Softech_Voice_Calling_Agent_Manual.pdf) |
 
 ---
 
@@ -51,67 +65,13 @@ Designed for agencies and enterprises, this solution automates customer support,
   * **1-Click Call Disconnect**: Gracefully terminates the WebRTC session and audio streams.
 * **In-App Credentials Manager (Settings Modal):**
   Allows clients to test and switch between multiple Assistant IDs and Public Keys directly in the browser with persistent local storage.
-* **1-Click Embed Snippet Generator Modal:**
-  Generates ready-to-copy code snippets for:
-  * **Vanilla HTML / Webflow / WordPress / Shopify** (Floating script tag)
-  * **React / Next.js** (Custom component code)
-  * **Iframe Embed** (Full interactive portal frame)
-* **Dark Mode & Fully Responsive Design:**
-  Optimized for smartphones, tablets, and desktop displays with custom scrollbars and backdrop blur effects.
 
 ---
 
-### 📞 2.3. Enterprise Telephony & Phone Integration
+## 3. Production Code Snippets (From the Web App)
 
-* **Dedicated Inbound & Outbound Phone Numbers:**
-  Assign US, UK, Canadian, or local international phone numbers directly via Vapi or linked **Twilio / Vonage** SIP trunks.
-* **Smart Call Forwarding Support:**
-  Compatible with existing business phone systems. Clients can forward calls after business hours, when lines are busy, or 24/7 without changing their existing public phone number.
-* **Outbound Calling Automation:**
-  Can trigger automated outbound phone calls via Vapi's REST API whenever a new lead submits a web form.
-
----
-
-### ⚡ 2.4. Data Integration & CRM Automation
-
-* **Automated Post-Call Webhooks:**
-  Pushes an automated JSON report to **Make.com**, **Zapier**, or a custom API the second a call finishes.
-* **High-Fidelity Audio Recording Link:**
-  Every call automatically generates a downloadable audio recording link for quality monitoring and compliance.
-* **AI-Generated Call Summary:**
-  Condenses lengthy voice conversations into bulleted key points, action items, and caller sentiment.
-* **Structured Data Extraction:**
-  Automatically parses caller name, contact information, appointment date/time, and qualification status.
-* **Direct CRM Synchronization:**
-  Enables 1-click sync into GoHighLevel, HubSpot, Salesforce, Zoho, Google Sheets, or Slack.
-
----
-
-## 3. How to Use the Web Voice Agent
-
-### Step 1: Access the Link
-Navigate to your deployed URL (e.g. `https://athanni-voice-agent.vercel.app`) on Google Chrome, Apple Safari, or Microsoft Edge.
-
-### Step 2: Grant Microphone Permissions
-Click **"Start Voice Call"**. When prompted by your browser:
-> *"athanni-voice-agent.vercel.app wants to use your microphone."*
-
-Click **Allow**. (Microphones require secure `HTTPS`).
-
-### Step 3: Speak Naturally
-* Once the status shows **Listening**, speak as you would on a regular phone call.
-* If you want to change topics or ask a question while the AI is talking, simply speak up—the agent will immediately pause and listen to you.
-
-### Step 4: End & Review
-* Click **"End Call"** when finished.
-* Review the live transcript and click **"Copy"** to save the conversation notes.
-
----
-
-## 4. Website Embedding Guide
-
-### Option A: The Floating Voice Button (Zero Code)
-Add this script before the closing `</body>` tag of any website:
+### Snippet 1: Zero-Code Floating Button (HTML / Webflow / WordPress / Shopify / Wix)
+Paste this script directly before the closing `</body>` tag of any website:
 
 ```html
 <!-- 1. Load Vapi Web SDK -->
@@ -120,14 +80,63 @@ Add this script before the closing `</body>` tag of any website:
   defer
 ></script>
 
-<!-- 2. Voice Call Floating Trigger -->
+<!-- 2. Athanni Softech Live Voice Trigger -->
 <vapi-button
   public-key="90fb2000-8816-4057-9c1a-2c94bd7dfa67"
   assistant-id="4979a054-806c-45d1-bf84-e83f8a58d61e"
 ></vapi-button>
 ```
 
-### Option B: Dedicated Full-Page / Embedded Section (Iframe)
+---
+
+### Snippet 2: React / Next.js Component (Real Code from `src/App.jsx`)
+Uses `@vapi-ai/web` for custom WebRTC call state and live streaming transcripts:
+
+```javascript
+import { useEffect, useState } from 'react';
+import Vapi from '@vapi-ai/web';
+
+const vapi = new Vapi('90fb2000-8816-4057-9c1a-2c94bd7dfa67');
+const ASSISTANT_ID = '4979a054-806c-45d1-bf84-e83f8a58d61e';
+
+export default function VoiceAgentButton() {
+  const [status, setStatus] = useState('idle'); // idle | listening | speaking | thinking
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    vapi.on('call-start', () => setStatus('listening'));
+    vapi.on('call-end', () => setStatus('idle'));
+    vapi.on('speech-start', () => setStatus('speaking'));
+    vapi.on('speech-end', () => setStatus('listening'));
+    vapi.on('message', (msg) => {
+      if (msg.type === 'transcript') {
+        setMessages((prev) => [...prev, { role: msg.role, text: msg.transcript }]);
+      }
+    });
+    return () => vapi.stop();
+  }, []);
+
+  const handleToggleCall = () => {
+    if (status === 'idle') {
+      vapi.start(ASSISTANT_ID);
+    } else {
+      vapi.stop();
+    }
+  };
+
+  return (
+    <button onClick={handleToggleCall} className="px-6 py-3 bg-teal-500 text-white rounded-xl">
+      {status === 'idle' ? 'Start Voice Call' : `End Call (${status})`}
+    </button>
+  );
+}
+```
+
+---
+
+### Snippet 3: Full-Portal Iframe Embed
+Embeds the complete Athanni Softech portal inside a website section:
+
 ```html
 <iframe
   src="https://athanni-voice-agent.vercel.app"
@@ -141,15 +150,19 @@ Add this script before the closing `</body>` tag of any website:
 
 ---
 
-## 5. Telephony & Phone Setup
+## 4. Telephony & CRM Automation
 
-1. In [Vapi Dashboard](https://dashboard.vapi.ai/) &rarr; **Phone Numbers**, buy or link a number.
-2. Select your assistant ID: `4979a054-806c-45d1-bf84-e83f8a58d61e`.
-3. Set up **Call Forwarding** on the client's office phone system to forward unanswered or after-hours calls to this Vapi number.
+1. **Dedicated Phone Numbers:**
+   * In [Vapi Phone Numbers](https://dashboard.vapi.ai/phone-numbers), buy or import a number (Twilio/Vonage).
+   * Assign Assistant ID: `4979a054-806c-45d1-bf84-e83f8a58d61e`.
+2. **Call Forwarding:**
+   * Forward client's existing business phone to the Vapi number on busy or after-hours.
+3. **Automated CRM Webhook:**
+   * Under [Assistant Settings](https://dashboard.vapi.ai/assistants), set **Server URL** to forward recordings, summaries, and transcripts to Make.com / HubSpot / Zapier.
 
 ---
 
-## 6. Support & Contact
+## 5. Support & Contact
 
 Delivered and maintained by:  
 **Athanni Softech**  
