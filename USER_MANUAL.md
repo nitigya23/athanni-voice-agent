@@ -1,59 +1,117 @@
 # Athanni Softech's Voice Calling Agent
-## Official User Guide & Deployment Manual
+## Official User Guide & Comprehensive Feature Manual
 
 ---
 
 ## 1. Executive Summary
 
-**Athanni Softech's Voice Calling Agent** is an ultra-low latency, conversational AI voice assistant powered by Vapi, state-of-the-art speech recognition (Deepgram), large language models, and natural human-like text-to-speech synthesis (ElevenLabs).
+**Athanni Softech's Voice Calling Agent** is an enterprise-grade, ultra-low latency conversational AI voice assistant. Built on Vapi's real-time orchestration engine, it integrates state-of-the-art speech recognition (Deepgram Nova-2), advanced large language models (LLMs), and hyper-realistic human voice synthesis (ElevenLabs).
 
-This voice agent enables businesses to automate inbound customer inquiries, qualify leads, schedule appointments, and provide 24/7 interactive support directly through a web browser or phone line.
+Designed for agencies and enterprises, this solution automates customer support, inbound lead qualification, appointment booking, and routine phone interactions 24 hours a day, 7 days a week, across web browsers and telephone networks.
 
 ---
 
-## 2. How to Use the Web Voice Agent
+## 2. Complete Feature Breakdown
 
-### Step 1: Open the Application
-Navigate to your deployed web URL (e.g. `https://athanni-voice-agent.vercel.app`) on Google Chrome, Apple Safari, Microsoft Edge, or Mozilla Firefox (desktop or mobile).
+### 🎙️ 2.1. Core Voice & Conversational AI Features
+
+* **Ultra-Low Latency Streaming (<700ms Response Time):**
+  Uses WebRTC audio streaming to deliver lightning-fast response times, eliminating the awkward pauses common in traditional chatbots.
+* **Human-Grade Neural Voice Synthesis (ElevenLabs):**
+  Produces fluid, natural speech complete with emotional inflection, realistic pauses, and human intonation.
+* **Continuous Real-Time Speech Recognition (Deepgram Nova-2):**
+  High-accuracy, multi-accent speech-to-text processing that understands diverse pronunciations, industry jargon, and background audio.
+* **Barge-In & Natural Interruption Handling:**
+  Callers can interrupt the AI at any moment mid-sentence. The agent immediately silences its voice output, updates its context, and listens to the caller's new inquiry.
+* **Smart Voice Activity Detection (VAD):**
+  Distinguishes between natural speech pauses, thinking hesitations, and completed statements to avoid premature cutoffs.
+* **Adaptive Noise & Echo Suppression:**
+  Filters out ambient noise, background chatter, and speaker feedback for clear audio quality on mobile devices and laptops.
+
+---
+
+### 💻 2.2. Web Portal & Interactive UI Features
+
+* **3D Audio-Reactive Voice Orb:**
+  An interactive central visualizer with dynamic glowing ripples and animations that transitions seamlessly across 5 lifecycle states:
+  * **Idle**: Ambient cyan pulse indicating the agent is online and ready.
+  * **Connecting**: Amber pulse during WebRTC session handshake.
+  * **Listening**: Emerald/teal ripple waves responding to the user's speech.
+  * **Thinking**: Violet breathing glow while the LLM reasons.
+  * **Speaking**: Indigo wave animations while the AI is talking.
+* **Dynamic Audio Waveform Meter:**
+  Real-time audio level bars that react directly to microphone input and speaker volume.
+* **Live Dual-Channel Transcript:**
+  Displays the conversation in real time with distinct avatars, role badges (`YOU` vs `ASSISTANT`), and precise message timestamps.
+* **1-Click Transcript Copy to Clipboard:**
+  Allows clients, managers, and QA teams to copy the full conversation transcript for instant sharing, ticket logging, or CRM entry.
+* **In-Call Controls:**
+  * **Instant Mute/Unmute**: Visual feedback when the caller's microphone is muted (turns crimson/slate).
+  * **Live Call Timer**: Counts call duration in real time.
+  * **1-Click Call Disconnect**: Gracefully terminates the WebRTC session and audio streams.
+* **In-App Credentials Manager (Settings Modal):**
+  Allows clients to test and switch between multiple Assistant IDs and Public Keys directly in the browser with persistent local storage.
+* **1-Click Embed Snippet Generator Modal:**
+  Generates ready-to-copy code snippets for:
+  * **Vanilla HTML / Webflow / WordPress / Shopify** (Floating script tag)
+  * **React / Next.js** (Custom component code)
+  * **Iframe Embed** (Full interactive portal frame)
+* **Dark Mode & Fully Responsive Design:**
+  Optimized for smartphones, tablets, and desktop displays with custom scrollbars and backdrop blur effects.
+
+---
+
+### 📞 2.3. Enterprise Telephony & Phone Integration
+
+* **Dedicated Inbound & Outbound Phone Numbers:**
+  Assign US, UK, Canadian, or local international phone numbers directly via Vapi or linked **Twilio / Vonage** SIP trunks.
+* **Smart Call Forwarding Support:**
+  Compatible with existing business phone systems. Clients can forward calls after business hours, when lines are busy, or 24/7 without changing their existing public phone number.
+* **Outbound Calling Automation:**
+  Can trigger automated outbound phone calls via Vapi's REST API whenever a new lead submits a web form.
+
+---
+
+### ⚡ 2.4. Data Integration & CRM Automation
+
+* **Automated Post-Call Webhooks:**
+  Pushes an automated JSON report to **Make.com**, **Zapier**, or a custom API the second a call finishes.
+* **High-Fidelity Audio Recording Link:**
+  Every call automatically generates a downloadable audio recording link for quality monitoring and compliance.
+* **AI-Generated Call Summary:**
+  Condenses lengthy voice conversations into bulleted key points, action items, and caller sentiment.
+* **Structured Data Extraction:**
+  Automatically parses caller name, contact information, appointment date/time, and qualification status.
+* **Direct CRM Synchronization:**
+  Enables 1-click sync into GoHighLevel, HubSpot, Salesforce, Zoho, Google Sheets, or Slack.
+
+---
+
+## 3. How to Use the Web Voice Agent
+
+### Step 1: Access the Link
+Navigate to your deployed URL (e.g. `https://athanni-voice-agent.vercel.app`) on Google Chrome, Apple Safari, or Microsoft Edge.
 
 ### Step 2: Grant Microphone Permissions
-When you first click **"Start Voice Call"**, your web browser will display a security prompt:
+Click **"Start Voice Call"**. When prompted by your browser:
 > *"athanni-voice-agent.vercel.app wants to use your microphone."*
 
-Click **Allow**. (Note: Microphones only work over secure `HTTPS` connections).
+Click **Allow**. (Microphones require secure `HTTPS`).
 
-### Step 3: Starting the Conversation
-* Click the large glowing sphere or the **"Start Voice Call"** button.
-* The visualizer will transition from **Idle** to **Connecting**, and then to **Listening**.
-* Speak clearly into your microphone as you would during a regular phone call.
+### Step 3: Speak Naturally
+* Once the status shows **Listening**, speak as you would on a regular phone call.
+* If you want to change topics or ask a question while the AI is talking, simply speak up—the agent will immediately pause and listen to you.
 
-### Step 4: Understanding the Voice Orb Visualizer
-The central interactive sphere dynamically reflects the agent's real-time state:
-
-| State | Orb Color | Meaning |
-| :--- | :--- | :--- |
-| **Idle** | Deep Slate / Cyan Glow | Standby mode, waiting for call to start. |
-| **Connecting** | Amber / Orange Pulse | Establishing WebRTC encrypted voice session. |
-| **Listening** | Emerald / Teal Ripples | Agent is listening to your voice input. |
-| **Thinking** | Soft Violet / Indigo | LLM is reasoning and generating response. |
-| **Speaking** | Indigo / Purple Waves | AI is speaking back to you in real-time. |
-
-### Step 5: Live Transcript & Call History
-* The right-hand panel displays every exchange between you and the AI in real time.
-* Click **"Copy"** at the top-right of the transcript panel at any time to copy the entire conversation text to your clipboard.
-
-### Step 6: In-Call Controls
-* **Mute Microphone**: Click the microphone icon to temporarily mute your voice (the orb turns red-gray to indicate you are muted). Click again to unmute.
-* **End Call**: Click the red **"End Call"** button to terminate the session.
+### Step 4: End & Review
+* Click **"End Call"** when finished.
+* Review the live transcript and click **"Copy"** to save the conversation notes.
 
 ---
 
-## 3. Embedding onto Your Client's Website
+## 4. Website Embedding Guide
 
-You can embed Athanni Softech's Voice Agent onto any existing website (Webflow, WordPress, Shopify, Wix, Squarespace, or custom code) using either of the following methods:
-
-### Option A: The Floating Voice Button (Zero-Code Widget)
-Paste this script just before the closing `</body>` tag on the client's website:
+### Option A: The Floating Voice Button (Zero Code)
+Add this script before the closing `</body>` tag of any website:
 
 ```html
 <!-- 1. Load Vapi Web SDK -->
@@ -70,8 +128,6 @@ Paste this script just before the closing `</body>` tag on the client's website:
 ```
 
 ### Option B: Dedicated Full-Page / Embedded Section (Iframe)
-To embed the entire interface (visualizer + live transcript) inside a designated webpage section:
-
 ```html
 <iframe
   src="https://athanni-voice-agent.vercel.app"
@@ -82,49 +138,19 @@ To embed the entire interface (visualizer + live transcript) inside a designated
   style="border-radius: 20px; border: 1px solid #1e293b; overflow: hidden;"
 ></iframe>
 ```
-*(Important: The `allow="microphone"` attribute is required for browser voice access).*
 
 ---
 
-## 4. Connecting to a Traditional Phone Line (Inbound & Outbound)
+## 5. Telephony & Phone Setup
 
-If your client wants to receive calls from regular phone numbers:
-
-1. **Assign a Dedicated Phone Number:**
-   * In the [Vapi Dashboard](https://dashboard.vapi.ai/), go to **Phone Numbers**.
-   * Purchase a US, UK, or local number directly, or link your existing **Twilio / Vonage** account.
-   * Attach Assistant ID: `4979a054-806c-45d1-bf84-e83f8a58d61e`.
-
-2. **Call Forwarding from Existing Business Lines:**
-   * The client does not need to change their existing business phone number.
-   * They can enable **conditional call forwarding** (e.g., when busy or after hours) or **unconditional call forwarding** from their current telecom provider to the Vapi number.
+1. In [Vapi Dashboard](https://dashboard.vapi.ai/) &rarr; **Phone Numbers**, buy or link a number.
+2. Select your assistant ID: `4979a054-806c-45d1-bf84-e83f8a58d61e`.
+3. Set up **Call Forwarding** on the client's office phone system to forward unanswered or after-hours calls to this Vapi number.
 
 ---
 
-## 5. Capturing Leads & CRM Automation
+## 6. Support & Contact
 
-To send transcripts, summaries, and lead information automatically to your client's CRM (HubSpot, GoHighLevel, Salesforce, Google Sheets, or Slack):
-
-1. Go to [dashboard.vapi.ai/assistants](https://dashboard.vapi.ai/assistants) and select your assistant (`4979a054-806c-45d1-bf84-e83f8a58d61e`).
-2. Under **Server URL**, enter a webhook URL from **Make.com**, **Zapier**, or your backend.
-3. At the end of every call, Vapi automatically pushes a JSON payload containing:
-   * **Call Recording URL** (high-fidelity audio)
-   * **Structured Call Summary**
-   * **Full Timestamped Transcript**
-   * **Customer Details** (name, phone number, booked slots, user intent)
-
----
-
-## 6. Best Practices for Optimal Call Quality
-
-* **Headphones / Quiet Space:** For the cleanest experience, use headphones or ensure there is minimal background speaker echo.
-* **Natural Conversation:** Speak naturally. The agent supports natural turn-taking and handles brief conversational pauses seamlessly.
-* **Barge-in / Interruptibility:** If you start speaking while the agent is talking, the agent will automatically pause and listen to your new input.
-
----
-
-## 7. Support & Contact
-
-Developed and delivered by:
+Delivered and maintained by:  
 **Athanni Softech**  
 *Next-Generation AI Voice & Automation Solutions*
