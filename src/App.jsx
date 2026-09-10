@@ -11,7 +11,8 @@ import {
   Clock,
   ShieldCheck,
   AlertCircle,
-  HelpCircle
+  HelpCircle,
+  FileDown
 } from 'lucide-react';
 import VoiceOrb from './components/VoiceOrb';
 import TranscriptView from './components/TranscriptView';
@@ -186,6 +187,17 @@ export default function App() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Download PDF button */}
+          <a
+            href="/Athanni_Softech_Voice_Calling_Agent_Manual.pdf"
+            download="Athanni_Softech_Voice_Calling_Agent_Manual.pdf"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-teal-500/10 hover:bg-teal-500/20 text-teal-300 border border-teal-500/30 rounded-xl transition-all"
+            title="Download Official PDF Manual"
+          >
+            <FileDown className="w-3.5 h-3.5 text-teal-400" />
+            <span>Download PDF</span>
+          </a>
+
           {/* Embed snippet button */}
           <button
             onClick={() => setIsEmbedOpen(true)}
