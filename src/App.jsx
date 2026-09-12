@@ -178,7 +178,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-sm font-semibold text-white tracking-wide">
-              Athanni Softech's Voice Calling Agent
+              Maruti Bazaar Voice Calling Agent
             </h1>
             <p className="text-[11px] text-teal-400 font-medium">
               Live AI Voice Assistant &amp; Client Portal
@@ -189,8 +189,8 @@ export default function App() {
         <div className="flex items-center gap-2">
           {/* Download PDF button */}
           <a
-            href="/Athanni_Softech_Voice_Calling_Agent_Manual.pdf"
-            download="Athanni_Softech_Voice_Calling_Agent_Manual.pdf"
+            href="/Maruti_Bazaar_Voice_Calling_Agent_Manual.pdf"
+            download="Maruti_Bazaar_Voice_Calling_Agent_Manual.pdf"
             className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium bg-teal-500/10 hover:bg-teal-500/20 text-teal-300 border border-teal-500/30 rounded-xl transition-all"
             title="Download Official PDF Manual"
           >

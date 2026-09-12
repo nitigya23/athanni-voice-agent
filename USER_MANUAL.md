@@ -1,4 +1,4 @@
-# Athanni Softech's Voice Calling Agent
+# Maruti Bazaar Voice Calling Agent
 ## Official User Guide, Implementation Manual & Testing Reference
 
 ---
@@ -13,13 +13,13 @@
 | **Vapi API Keys Dashboard** | [https://dashboard.vapi.ai/api-keys](https://dashboard.vapi.ai/api-keys) |
 | **Vapi Assistant Settings** | [https://dashboard.vapi.ai/assistants](https://dashboard.vapi.ai/assistants) |
 | **GitHub Source Code Repository** | [https://github.com/nitigya23/athanni-voice-agent](https://github.com/nitigya23/athanni-voice-agent) |
-| **Official PDF Download** | [Download PDF Manual](https://github.com/nitigya23/athanni-voice-agent/raw/main/Athanni_Softech_Voice_Calling_Agent_Manual.pdf) |
+| **Official PDF Download** | [Download PDF Manual](https://github.com/nitigya23/athanni-voice-agent/raw/main/Maruti_Bazaar_Voice_Calling_Agent_Manual.pdf) |
 
 ---
 
 ## 1. Executive Summary
 
-**Athanni Softech's Voice Calling Agent** is an enterprise-grade, ultra-low latency conversational AI voice assistant. Built on Vapi's real-time orchestration engine, it integrates state-of-the-art speech recognition (Deepgram Nova-2), advanced large language models (LLMs), and hyper-realistic human voice synthesis (ElevenLabs).
+**Maruti Bazaar Voice Calling Agent** is an enterprise-grade, ultra-low latency conversational AI voice assistant. Built on Vapi's real-time orchestration engine, it integrates state-of-the-art speech recognition (Deepgram Nova-2), advanced large language models (LLMs), and hyper-realistic human voice synthesis (ElevenLabs).
 
 Designed for agencies and enterprises, this solution automates customer support, inbound lead qualification, appointment booking, and routine phone interactions 24 hours a day, 7 days a week, across web browsers and telephone networks.
 
@@ -135,7 +135,7 @@ export default function VoiceAgentButton() {
 ---
 
 ### Snippet 3: Full-Portal Iframe Embed
-Embeds the complete Athanni Softech portal inside a website section:
+Embeds the complete Maruti Bazaar portal inside a website section:
 
 ```html
 <iframe
@@ -165,5 +165,5 @@ Embeds the complete Athanni Softech portal inside a website section:
 ## 5. Support & Contact
 
 Delivered and maintained by:  
-**Athanni Softech**  
+**Maruti Bazaar**  
 *Next-Generation AI Voice & Automation Solutions*
