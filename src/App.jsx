@@ -19,17 +19,13 @@ import TranscriptView from './components/TranscriptView';
 import SettingsModal from './components/SettingsModal';
 import EmbedSnippetModal from './components/EmbedSnippetModal';
 
-const DEFAULT_KEY = '90fb2000-8816-4057-9c1a-2c94bd7dfa67';
-const DEFAULT_ASSISTANT_ID = '4979a054-806c-45d1-bf84-e83f8a58d61e';
+const MARUTI_BAZAAR_KEY = '90fb2000-8816-4057-9c1a-2c94bd7dfa67';
+const MARUTI_BAZAAR_ASSISTANT_ID = '4979a054-806c-45d1-bf84-e83f8a58d61e';
 
 export default function App() {
-  // Always default directly to Maruti Bazaar credentials
-  const [apiKey, setApiKey] = useState(() => {
-    return import.meta.env.VITE_VAPI_PUBLIC_KEY || DEFAULT_KEY;
-  });
-  const [assistantId, setAssistantId] = useState(() => {
-    return import.meta.env.VITE_VAPI_ASSISTANT_ID || DEFAULT_ASSISTANT_ID;
-  });
+  // Directly and exclusively wired to Maruti Bazaar
+  const [apiKey, setApiKey] = useState(MARUTI_BAZAAR_KEY);
+  const [assistantId, setAssistantId] = useState(MARUTI_BAZAAR_ASSISTANT_ID);
 
   const [callStatus, setCallStatus] = useState('idle'); // 'idle' | 'connecting' | 'listening' | 'speaking' | 'thinking'
   const [isMuted, setIsMuted] = useState(false);
@@ -132,7 +128,7 @@ export default function App() {
     try {
       setCallStatus('connecting');
       if (vapiRef.current) {
-        await vapiRef.current.start(assistantId || DEFAULT_ASSISTANT_ID);
+        await vapiRef.current.start(MARUTI_BAZAAR_ASSISTANT_ID);
       }
     } catch (err) {
       console.error(err);
