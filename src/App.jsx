@@ -129,7 +129,9 @@ export default function App() {
     try {
       setCallStatus('connecting');
       if (vapiRef.current) {
-        await vapiRef.current.start(assistantId);
+        await vapiRef.current.start(assistantId, {
+          firstMessage: "Hello! Welcome to Maruti Bazaar. How can I assist you today?",
+        });
       }
     } catch (err) {
       console.error(err);
@@ -294,6 +296,15 @@ export default function App() {
               isMuted={isMuted}
               onClick={isCallActive ? handleEndCall : handleStartCall}
             />
+
+            {/* Active Agent Info Badge */}
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/80 text-[11px] font-mono text-slate-300">
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+                <span className="text-teal-400 font-semibold">Agent:</span>
+                <span>{assistantId}</span>
+              </div>
+            </div>
 
             {/* Bottom Call Action Controls */}
             <div className="flex items-center justify-center gap-4 pt-4 border-t border-slate-800/60">
