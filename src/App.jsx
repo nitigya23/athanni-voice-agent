@@ -129,9 +129,7 @@ export default function App() {
     try {
       setCallStatus('connecting');
       if (vapiRef.current) {
-        await vapiRef.current.start(assistantId, {
-          firstMessage: "Hello! Welcome to Maruti Bazaar. How can I assist you today?",
-        });
+        await vapiRef.current.start(assistantId);
       }
     } catch (err) {
       console.error(err);
