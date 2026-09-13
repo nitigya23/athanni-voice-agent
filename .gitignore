@@ -1,0 +1,11 @@
+node_modules
+dist
+dist-ssr
+.env
+.env*.local
+*.pdf
+app_screenshot.png
+doc_for_pdf.html
+generate_pdf.py
+.vscode
+.DS_Store
